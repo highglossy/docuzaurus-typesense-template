@@ -29,8 +29,34 @@ const config: Config = {
 ...
 themes: ['docusaurus-theme-search-typesense'],
 ...
+  themeConfig: {
+    ...
+
+    typesense: {
+      // Replace this with the name of your index/collection.
+      // It should match the "index_name" entry in the scraper's "config.json" file.
+      typesenseCollectionName: "__replace_with_your_index_name__",
+
+      typesenseServerConfig: {
+        nodes: [
+          {
+            host: process.env.HOST || "localhost",
+            port: process.env.PORT || 443,
+            protocol: process.env.PORT === "443" ? "https" : "http",
+          },
+        ],
+        apiKey: process.env.TYPESENSE_API_KEY,
+      },
+      typesenseSearchParameters: {},
+      contextualSearch: true,
+    }
+  }
+
 }
 ```
+
+Replace your project details
+`typesenseCollectionName: "__replace_with_your_index_name__",`
 
 ### Edit `typesense.config.json`
 

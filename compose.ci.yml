@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  service:
+    image: ${DOCKER_IMAGE}:latest
+    ports:
+      - target: 3000
+        published: $PORT
+        protocol: tcp
+    networks:
+      app_net:
+        aliases:
+          - docs
+    logging:
+      driver: json-file
+      options:
+        max-size: "100k"
+        max-file: 5
+
+  typesense:
+    image: typesense/typesense:27.0
+    ports:
+      - target: 8108
+        published: 8108
+        protocol: tcp
+    volumes:
+      - /data/$PROJECT_NAME/typesense:/data
+    command: "--data-dir /data --api-key=$TYPESENSE_API_KEY --enable-cors"
+
+networks:
+  app_net:
+    name: $PROJECT_NAME
+    external: true
