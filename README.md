@@ -14,6 +14,47 @@ $ cd my-docs
 $ yarn
 ```
 
+## Setup Docuzaurus
+
+Everything you need is on the [Docuzaurus documentation](https://docusaurus.io/docs/installation)
+
+## Setup Typesense
+
+### `docuzaurus.config.ts` modifications
+
+Make sure you have the following in your `docuzaurus.config.ts`
+
+```ts
+const config: Config = {
+...
+themes: ['docusaurus-theme-search-typesense'],
+...
+}
+```
+
+### Edit `typesense.config.json`
+
+Replace your project details
+
+```json
+{
+  "index_name": "__replace_with_your_index_name__",
+  "start_urls": ["https://your-published-docs-url.com"],
+  "sitemap_urls": ["https://your-published-docs-url.com/sitemap.xml"],
+...
+}
+```
+
+### Add `.env` file
+
+```sh
+TYPESENSE_API_KEY=xyz
+# If you are using docker or want to override the host
+# TYPESENSE_HOST=host.docker.internal
+# TYPESENSE_HOST=your-domain.com
+PORT=3001
+```
+
 ## Local Development
 
 ```
