@@ -75,7 +75,7 @@ docs-typesense-index:
       when: on_success
   environment: $CI_COMMIT_BRANCH
   script:
-    - apk add -y jq
+    - apk add --no-cache --virtual jq
     - ./scripts/typesense_index.sh
   after_script:
     - "notify_telegram.py"
