@@ -11,7 +11,7 @@ const config: Config = {
   url: process.env.PROJECT_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: "/docs/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -142,7 +142,7 @@ const config: Config = {
         nodes: [
           {
             host: process.env.HOST || "localhost",
-            port: process.env.TYPESENSE_PORT || 443,
+            port: process.env.PORT || 443,
             protocol: process.env.PORT === "443" ? "https" : "http",
           },
         ],
