@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const projectUrl = process.env.PROJECT_URL;
 const url = new URL(projectUrl);
 
-console.log("projectUrl", url.hostname);
+console.log("projectUrl", url.hostname, url.port, url.protocol);
 
 const config: Config = {
   title: "My Site",
@@ -148,9 +148,9 @@ const config: Config = {
       typesenseServerConfig: {
         nodes: [
           {
-            host: process.env.TYPESENSE_HOST || url.hostname,
-            port: url.port || 443,
-            protocol: url.protocol,
+            host: url.hostname,
+            port: 443,
+            protocol: "https",
           },
         ],
         apiKey: process.env.TYPESENSE_API_KEY,
