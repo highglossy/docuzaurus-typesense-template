@@ -2,6 +2,11 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
+const projectUrl = process.env.PROJECT_URL;
+const url = new URL(projectUrl);
+
+console.log("projectUrl", url.hostname);
+
 const config: Config = {
   title: "My Site",
   tagline: "Dinosaurs are cool",
@@ -11,7 +16,7 @@ const config: Config = {
   url: process.env.PROJECT_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/support/",
+  baseUrl: "/docs/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -20,6 +25,7 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
+  trailingSlash: false,
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -36,6 +42,7 @@ const config: Config = {
       "classic",
       {
         docs: {
+          routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -141,9 +148,9 @@ const config: Config = {
       typesenseServerConfig: {
         nodes: [
           {
-            host: process.env.HOST || "localhost",
-            port: process.env.TYPESENSE_PORT || 443,
-            protocol: process.env.TYPESENSE_PORT === "443" ? "https" : "http",
+            host: process.env.TYPESENSE_HOST || url.hostname,
+            port: url.port || 443,
+            protocol: url.protocol,
           },
         ],
         apiKey: process.env.TYPESENSE_API_KEY,
