@@ -136,7 +136,7 @@ const config: Config = {
     typesense: {
       // Replace this with the name of your index/collection.
       // It should match the "index_name" entry in the scraper's "config.json" file.
-      typesenseCollectionName: "__replace_with_your_index_name__",
+      typesenseCollectionName: process.env.PROJECT,
 
       typesenseServerConfig: {
         nodes: [
