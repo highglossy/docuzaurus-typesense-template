@@ -27,6 +27,7 @@ docs-build-push-docker:
       --build-arg "PROJECT=$PROJECT"
       --build-arg "PORT=$PORT"
       --build-arg "TYPESENSE_API_KEY=$TYPESENSE_API_KEY"
+      --build-arg "TYPESENSE_PORT=$TYPESENSE_PORT"
       --build-arg "HOST=$HOST"
       --build-arg "CHANNEL=$CI_ENVIRONMENT_NAME"
       --build-arg "BUILD_NUMBER=$CI_PIPELINE_ID"
