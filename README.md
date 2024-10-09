@@ -74,11 +74,10 @@ Replace your project details
 ### Add `.env` file
 
 ```sh
-TYPESENSE_API_KEY=xyz
-# If you are using docker or want to override the host
-# TYPESENSE_HOST=host.docker.internal
-# TYPESENSE_HOST=your-domain.com
+PROJECT=my-project
+HOST=localhost
 PORT=3001
+TYPESENSE_API_KEY=your-typesense-api-key
 ```
 
 ## Local Development

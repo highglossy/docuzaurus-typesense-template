@@ -24,10 +24,15 @@ services:
         published: 8108
         protocol: tcp
     volumes:
-      - /data/$PROJECT_NAME/typesense:/data
+      - /data/$PROJECT/typesense:/data
     command: "--data-dir /data --api-key=$TYPESENSE_API_KEY --enable-cors"
+    logging:
+      driver: json-file
+      options:
+        max-size: "100k"
+        max-file: 5
 
 networks:
   app_net:
-    name: $PROJECT_NAME
+    name: $PROJECT
     external: true

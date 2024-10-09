@@ -1,5 +1,5 @@
 {
-  "index_name": "__replace_with_your_index_name__",
+  "index_name": "will_be_replaced_in_ci",
   "start_urls": ["https://your-published-docs-url.com"],
   "sitemap_urls": ["https://your-published-docs-url.com/sitemap.xml"],
   "sitemap_alternate_links": true,
