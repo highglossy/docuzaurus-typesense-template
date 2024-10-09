@@ -142,8 +142,8 @@ const config: Config = {
         nodes: [
           {
             host: process.env.HOST || "localhost",
-            port: process.env.PORT || 443,
-            protocol: process.env.PORT === "443" ? "https" : "http",
+            port: process.env.TYPESENSE_PORT || 443,
+            protocol: process.env.TYPESENSE_PORT === "443" ? "https" : "http",
           },
         ],
         apiKey: process.env.TYPESENSE_API_KEY,
