@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const projectUrl = process.env.PROJECT_URL;
 const url = new URL(projectUrl);
 
-console.log("projectUrl", url.hostname, url.port, url.protocol);
+// console.log("projectUrl", url.hostname, url.port, url.protocol);
 
 const config: Config = {
   title: "My Site",
