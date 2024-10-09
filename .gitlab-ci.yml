@@ -24,6 +24,10 @@ docs-build-push-docker:
       docker buildx build 
       --pull
       --platform linux/amd64
+      --build-arg "PROJECT=$PROJECT"
+      --build-arg "PORT=$PORT"
+      --build-arg "TYPESENSE_API_KEY=$TYPESENSE_API_KEY"
+      --build-arg "HOST=$HOST"
       --build-arg "CHANNEL=$CI_ENVIRONMENT_NAME"
       --build-arg "BUILD_NUMBER=$CI_PIPELINE_ID"
       --build-arg "CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH"
