@@ -25,6 +25,7 @@ docs-build-push-docker:
       --pull
       --platform linux/amd64
       --build-arg "PROJECT=$PROJECT"
+      --build-arg "PROJECT_URL=$PROJECT_URL"
       --build-arg "PORT=$PORT"
       --build-arg "TYPESENSE_API_KEY=$TYPESENSE_API_KEY"
       --build-arg "TYPESENSE_PORT=$TYPESENSE_PORT"
