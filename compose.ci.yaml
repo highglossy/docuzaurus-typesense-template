@@ -4,7 +4,7 @@ services:
   service:
     image: ${DOCKER_IMAGE}:latest
     ports:
-      - target: 3000
+      - target: 80
         published: $PORT
         protocol: tcp
     networks:
@@ -21,7 +21,7 @@ services:
     image: typesense/typesense:27.0
     ports:
       - target: 8108
-        published: 8108
+        published: $TYPESENSE_PORT
         protocol: tcp
     volumes:
       - /data/$PROJECT/typesense:/data

@@ -2,13 +2,18 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
+const projectUrl = process.env.PROJECT_URL;
+const url = new URL(projectUrl);
+
+// console.log("projectUrl", url.hostname, url.port, url.protocol);
+
 const config: Config = {
   title: "My Site",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: process.env.PROJECT_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -20,6 +25,7 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
+  // trailingSlash: false,
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -36,6 +42,7 @@ const config: Config = {
       "classic",
       {
         docs: {
+          // routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -136,14 +143,14 @@ const config: Config = {
     typesense: {
       // Replace this with the name of your index/collection.
       // It should match the "index_name" entry in the scraper's "config.json" file.
-      typesenseCollectionName: "__replace_with_your_index_name__",
+      typesenseCollectionName: process.env.PROJECT,
 
       typesenseServerConfig: {
         nodes: [
           {
-            host: process.env.HOST || "localhost",
-            port: process.env.PORT || 443,
-            protocol: process.env.PORT === "443" ? "https" : "http",
+            host: url.hostname,
+            port: 443,
+            protocol: "https",
           },
         ],
         apiKey: process.env.TYPESENSE_API_KEY,

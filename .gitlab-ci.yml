@@ -21,9 +21,15 @@ docs-build-push-docker:
     - "docker_tools.sh login"
     - 'echo "Docker build image: ${DOCKER_IMAGE}:${CI_PIPELINE_IID}"'
     - >
-      docker buildx build 
+      docker buildx build
       --pull
       --platform linux/amd64
+      --build-arg "PROJECT=$PROJECT"
+      --build-arg "PROJECT_URL=$PROJECT_URL"
+      --build-arg "PORT=$PORT"
+      --build-arg "TYPESENSE_API_KEY=$TYPESENSE_API_KEY"
+      --build-arg "TYPESENSE_PORT=$TYPESENSE_PORT"
+      --build-arg "HOST=$HOST"
       --build-arg "CHANNEL=$CI_ENVIRONMENT_NAME"
       --build-arg "BUILD_NUMBER=$CI_PIPELINE_ID"
       --build-arg "CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH"
@@ -35,7 +41,6 @@ docs-build-push-docker:
   after_script:
     - "notify_telegram.py"
     - "docker_tools.sh clean"
-
 docs-deploy:
   stage: deploy
   image: niklucky/gitlab-base:latest
@@ -48,8 +53,8 @@ docs-deploy:
       when: manual
   environment: $CI_COMMIT_BRANCH
   script:
-    - "cat $ENV_FILE"
-    - "cp $ENV_FILE .env"
+    # - "cat $ENV_FILE"
+    # - "cp $ENV_FILE .env"
     - "cp compose.ci.yaml compose.yml"
     - "docker_tools.sh createRemoteContext"
     - "docker_tools.sh createNetwork"
@@ -71,7 +76,8 @@ docs-typesense-index:
       when: on_success
   environment: $CI_COMMIT_BRANCH
   script:
-    - "cat $ENV_FILE"
+    - apk add jq
+    - "cp $ENV_TYPESENSE .env"
     - ./scripts/typesense_index.sh
   after_script:
     - "notify_telegram.py"
