@@ -75,7 +75,6 @@ docs-typesense-index:
       when: on_success
   environment: $CI_COMMIT_BRANCH
   script:
-    - "cat $ENV_FILE"
     - ./scripts/typesense_index.sh
   after_script:
     - "notify_telegram.py"
